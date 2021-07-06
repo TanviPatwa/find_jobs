@@ -1,8 +1,10 @@
 import 'package:find_jobs/providers/fetch_data.dart';
+import 'package:find_jobs/screens/filter_options_screen.dart';
 import 'package:find_jobs/widgets/list_look.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'bottom_sort_screen.dart';
 
 List<String> titlesL;
 
@@ -14,6 +16,22 @@ class ListedJobsScreen extends StatefulWidget {
 class _ListedJobsScreenState extends State<ListedJobsScreen> {
   var _isInit = true;
   var _isLoading = false;
+
+  void sort(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return BottomFilterScreen();
+        });
+  }
+
+  void filter(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return FilterOptionsScreen();
+        });
+  }
 
   @override
   void didChangeDependencies() {
@@ -36,17 +54,30 @@ class _ListedJobsScreenState extends State<ListedJobsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // titlesL = Provider.of(context)<FetchData>(context).uniqueTitles;
     print('in listed_jobs_screen' + title);
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text('Find your Job!')),
           actions: [
             IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  showSearch(context: context, delegate: DataSearch());
-                }),
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearch());
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.filter_list_alt),
+              onPressed: () {
+                filter(context);
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.sort),
+              onPressed: () {
+                sort(context);
+              },
+            ),
+
           ],
         ),
         body: _isLoading
@@ -94,9 +125,8 @@ class DataSearch extends SearchDelegate<String> {
     // close(context, null);
     if (query.isEmpty) query = '';
     selectedTitle = query.length > selectedTitle.length ? query : selectedTitle;
-    query=selectedTitle;
+    query = selectedTitle;
     // recent.insert(0, selectedTitle);
-    print(selectedTitle);
     return ListLook(selectedTitle);
   }
 
@@ -112,7 +142,7 @@ class DataSearch extends SearchDelegate<String> {
       itemBuilder: (context, index) => ListTile(
         onTap: () {
           selectedTitle = suggestionList[index];
-          print('this is selectedText ' + selectedTitle);
+          // print('this is selectedText ' + selectedTitle);
           showResults(context);
         },
         leading: Icon(Icons.computer_outlined),

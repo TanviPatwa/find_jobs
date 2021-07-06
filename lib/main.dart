@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         create: (context) => FetchData(),),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Find Jobs',
         theme: ThemeData(
           primarySwatch: Colors.blue,

@@ -12,7 +12,11 @@ class ListLook extends StatelessWidget {
     List<Job> data=[];
     print('in list_look'+title);
     final providerObject = Provider.of<FetchData>(context);
-    if(title==''){
+    if(Job.flag) {
+      Job.flag=false;
+      print('fetching dummy list');
+      data = providerObject.dummys;
+    } else if(title==''){
       data = providerObject.items;
       print(data.length);
     }

@@ -8,21 +8,23 @@ class Job {
   final String category;
   final List tags;
   final String job_type;
-  final String publication_date;
+  final DateTime publication_date;
   final String candidate_required_location;
   final String salary;
   final String description;
+  static bool flag = false;
 
-  Job(
-      {@required this.id,
-      this.url,
-      @required this.title,
-      @required this.company_name,
-      this.category,
-      this.tags,
-      this.job_type,
-      this.publication_date,
-      this.candidate_required_location,
-      this.salary,
-      this.description});
+  Job({
+    @required this.id,
+    this.url,
+    @required this.title,
+    @required this.company_name,
+    @required this.category,
+    this.tags,
+    @required this.job_type,
+    @required this.publication_date,
+    this.candidate_required_location,
+    this.salary,
+    this.description,
+  });
 }

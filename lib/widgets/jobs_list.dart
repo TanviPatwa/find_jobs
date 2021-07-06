@@ -13,14 +13,7 @@ class JobsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerObject = Provider.of<FetchData>(context);
     Job data = providerObject.getItem(id);
-    print('in jobs_list '+providerObject.Jtitle);
-    // if(providerObject.Jtitle==''){
-    //   data = providerObject.items;
-    //   print('all');
-    //   // print(data[i].title);
-    // }
-    // else
-    //   data = providerObject.getItemByTitle(providerObject.Jtitle);
+    // print('in jobs_list '+providerObject.Jtitle);
     return GestureDetector(
       onTap: (){Navigator.of(context)
           .pushNamed(JobDetails.routeName,arguments: data.id);
@@ -58,9 +51,11 @@ class JobsList extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(data.publication_date.split('T')[0],style: TextStyle(color: Colors.green),),
+                  // child: Text(data.publication_date.split('T')[0],style: TextStyle(color: Colors.green),),
+                  child: Text(data.publication_date.toString().split(' ')[0],style: TextStyle(color: Colors.green),),
                 ),
-                Text(data.job_type=='full_time'?'Full Time':data.job_type=='contract'?'Contract':data.job_type,style: TextStyle(color: Colors.grey),),
+
+                Text(data.job_type=='full_time'?'Full Time':data.job_type=='contract'?'Contract':data.job_type=='part_time'?'Part Time':data.job_type,style: TextStyle(color: Colors.grey),),
               ],
             ),
           ),
