@@ -1,7 +1,6 @@
 import 'package:find_jobs/providers/fetch_data.dart';
 import 'package:find_jobs/screens/job_details.dart';
 import 'package:find_jobs/screens/listed_jobs_screen.dart';
-import 'package:find_jobs/widgets/jobs_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,6 @@ class MyApp extends StatelessWidget {
         home: ListedJobsScreen(),
         routes: {
           JobDetails.routeName: (context) => JobDetails(),
-          // JobsList.routeName: (context) => JobsList(),
         },
       ),
     );
