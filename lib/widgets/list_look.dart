@@ -10,11 +10,9 @@ class ListLook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Job> data=[];
-    print('in list_look'+title);
     final providerObject = Provider.of<FetchData>(context);
-    if(Job.flag) {
+    if(Job.flag && title=='') {
       Job.flag=false;
-      print('fetching dummy list');
       data = providerObject.dummys;
     } else if(title==''){
       data = providerObject.items;
@@ -26,7 +24,7 @@ class ListLook extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
         children: <Widget>[
-          Consumer<FetchData>(
+          data.length==0?Center(child: Text('No Results Found!',style: TextStyle(fontSize: 20,color: Colors.grey),)):Consumer<FetchData>(
             builder: (context, job, child) => Expanded(
                 child: ListView.builder(
                   itemCount: data.length,

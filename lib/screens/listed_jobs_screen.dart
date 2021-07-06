@@ -54,7 +54,6 @@ class _ListedJobsScreenState extends State<ListedJobsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('in listed_jobs_screen' + title);
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text('Find your Job!')),

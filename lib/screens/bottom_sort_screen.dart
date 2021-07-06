@@ -53,16 +53,15 @@ class _BottomFilterScreenState extends State<BottomFilterScreen> {
 
             Container(
               width: double.infinity,
-              child: FlatButton(
+              child: TextButton(
                   onPressed: () {
                     Job.flag=true;
-                    print('in bottom_options_screen');
                     Provider.of<FetchData>(context, listen: false).filter(0,filtertype: _filterType,);
                     Navigator.of(context).pop();
                   },
                   child: Text(
                     'FILTER',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),
                   )),
             )
           ],

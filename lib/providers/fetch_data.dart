@@ -4,7 +4,7 @@ import 'package:find_jobs/screens/filter_options_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:find_jobs/screens/bottom_sort_screen.dart' show FilterType;
-import 'package:find_jobs/screens/filter_options_screen.dart' show JobType;
+import 'package:find_jobs/screens/filter_options_screen.dart' show JobType,CategoryType;
 
 
 class FetchData with ChangeNotifier {
@@ -15,8 +15,7 @@ class FetchData with ChangeNotifier {
   String _Jtitle ='';
   int flag=0;
 
-  void filter(int whatChanged,{FilterType filtertype=FilterType.Ascending,JobType jobType=JobType.FullTime}) {
-    _dummy=_items;
+  void filter(int whatChanged,{FilterType filtertype=FilterType.Ascending,JobType jobType=JobType.All,CategoryType categoryType=CategoryType.All}) {
     if(Job.flag) {
       if(whatChanged==0) {
         if (filtertype == FilterType.Ascending) {
@@ -28,28 +27,37 @@ class FetchData with ChangeNotifier {
         }
       }
       else if(whatChanged==1) {
-        if (jobType == JobType.FullTime) {
-          _dummy = _dummy.where((element) => (element.job_type == 'full_time')).toList();
-        } else if (jobType == JobType.PartTime) {
-          _dummy = _dummy.where((element) => (element.job_type == 'part_time')).toList();
-        } else if (jobType == JobType.Contract) {
-          _dummy = _dummy.where((element) => (element.job_type == 'contract')).toList();
-        }
+        if (jobType == JobType.FullTime) _dummy = _dummy.where((element) => (element.job_type == 'full_time')).toList();
+        else if (jobType == JobType.PartTime) _dummy = _dummy.where((element) => (element.job_type == 'part_time')).toList();
+        else if (jobType == JobType.Contract) _dummy = _dummy.where((element) => (element.job_type == 'contract')).toList();
+        else
+          _dummy=_items;
+
+        if (categoryType == CategoryType.MedicalHealth) _dummy = _dummy.where((element) => (element.category == 'Medical / Health')).toList();
+        else if (categoryType == CategoryType.Teaching) _dummy = _dummy.where((element) => (element.category == 'Teaching')).toList();
+        else if (categoryType == CategoryType.Business) _dummy = _dummy.where((element) => (element.category == 'Business')).toList();
+        else if (categoryType == CategoryType.Writing) _dummy = _dummy.where((element) => (element.category == 'Writing')).toList();
+        else if (categoryType == CategoryType.CustomerService) _dummy = _dummy.where((element) => (element.category == 'Customer Service')).toList();
+        else if (categoryType == CategoryType.HumanResources) _dummy = _dummy.where((element) => (element.category == 'Human Resources')).toList();
+        else if (categoryType == CategoryType.SoftwareDevelopment) _dummy = _dummy.where((element) => (element.category == 'Software Development')).toList();
+        else if (categoryType == CategoryType.Design) _dummy = _dummy.where((element) => (element.category == 'Design')).toList();
+        else if (categoryType == CategoryType.Marketing) _dummy = _dummy.where((element) => (element.category == 'Marketing')).toList();
+        else if (categoryType == CategoryType.Sales) _dummy = _dummy.where((element) => (element.category == 'Sales')).toList();
+        else if (categoryType == CategoryType.Product) _dummy = _dummy.where((element) => (element.category == 'Product')).toList();
+        else if (categoryType == CategoryType.Data) _dummy = _dummy.where((element) => (element.category == 'Data')).toList();
+        else if (categoryType == CategoryType.DevOpsSysadmin) _dummy = _dummy.where((element) => (element.category == 'DevOps / Sysadmin')).toList();
+        else if (categoryType == CategoryType.FinanceLegal) _dummy = _dummy.where((element) => (element.category == 'Finance / Legal')).toList();
+        else if (categoryType == CategoryType.QA) _dummy = _dummy.where((element) => (element.category == 'QA')).toList();
+        else if (categoryType == CategoryType.AllOthers) _dummy = _dummy.where((element) => (element.category == 'All others')).toList();
+        else
+          _dummy=_items;
       }
-      print('in provider');
       print(_dummy[0].job_type);
       notifyListeners();
     }
     else
       _dummy=_items;
   }
-  //
-  // void filter(JobType filterType,String categoryType, int date){
-  //   if(flag==0)
-  //     _dummy=_items;
-  //   else
-  //   _dummy = _items.where((element) => (element.job_type_filter == filterType)and(element.category)).toList();
-  // }
 
   List<Job> get items {
     return [..._items];
@@ -113,7 +121,6 @@ class FetchData with ChangeNotifier {
       if(jobTitles!=null) {
         _uniqueTitles = jobTitles.toSet().toList();
         _category.addAll(cat.toSet().toList());
-
       }
       print(_items.length);
       notifyListeners();
