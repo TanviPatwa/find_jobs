@@ -26,7 +26,7 @@ class ListLook extends StatelessWidget {
             builder: (context, job, child) => Expanded(
                 child: ListView.builder(
                   itemCount: data.length,
-                  itemBuilder: (context,i) => JobsList(i), //exception
+                  itemBuilder: (context,i) => JobsList(data[i].id),
                 )),
           ),
         ],

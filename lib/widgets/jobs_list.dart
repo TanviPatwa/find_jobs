@@ -7,23 +7,23 @@ import 'package:provider/provider.dart';
 
 class JobsList extends StatelessWidget {
   static const routeName = '/jobsList';
-  int i;
-  JobsList(this.i);
+  int id;
+  JobsList(this.id);
   @override
   Widget build(BuildContext context) {
-    final providerObject = Provider.of<FetchData>(context,listen: false);
-    List<Job> data;
-    print('in jobs_list'+providerObject.Jtitle);
-    if(providerObject.Jtitle==''){
-      data = providerObject.items;
-      print('all');
-      print(data[i].title);
-    }
-    else
-      data = providerObject.getItemByTitle(providerObject.Jtitle);
+    final providerObject = Provider.of<FetchData>(context);
+    Job data = providerObject.getItem(id);
+    print('in jobs_list '+providerObject.Jtitle);
+    // if(providerObject.Jtitle==''){
+    //   data = providerObject.items;
+    //   print('all');
+    //   // print(data[i].title);
+    // }
+    // else
+    //   data = providerObject.getItemByTitle(providerObject.Jtitle);
     return GestureDetector(
       onTap: (){Navigator.of(context)
-          .pushNamed(JobDetails.routeName,arguments: data[i].id);
+          .pushNamed(JobDetails.routeName,arguments: data.id);
       },
       child: Card(
         elevation: 3.0,
@@ -42,25 +42,25 @@ class JobsList extends StatelessWidget {
 
             title: Padding(
               padding: const EdgeInsets.only(bottom: 5.0),
-              child: Text(data[i].title,style: TextStyle(fontWeight: FontWeight.bold),),
+              child: Text(data.title,style: TextStyle(fontWeight: FontWeight.bold),),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom:5.0),
-                  child: Text(data[i].company_name,style: TextStyle(color: Colors.black),),
+                  child: Text(data.company_name,style: TextStyle(color: Colors.black),),
                 ),
-                Text('Category: '+data[i].category),
+                Text('Category: '+data.category),
               ],
             ),
             trailing: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(data[i].publication_date.split('T')[0],style: TextStyle(color: Colors.green),),
+                  child: Text(data.publication_date.split('T')[0],style: TextStyle(color: Colors.green),),
                 ),
-                Text(data[i].job_type=='full_time'?'Full Time':data[i].job_type=='contract'?'Contract':data[i].job_type,style: TextStyle(color: Colors.grey),),
+                Text(data.job_type=='full_time'?'Full Time':data.job_type=='contract'?'Contract':data.job_type,style: TextStyle(color: Colors.grey),),
               ],
             ),
           ),
