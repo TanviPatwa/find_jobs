@@ -24,7 +24,10 @@ class ListLook extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
         children: <Widget>[
-          data.length==0?Center(child: Text('No Results Found!',style: TextStyle(fontSize: 20,color: Colors.grey),)):Consumer<FetchData>(
+          data.length==0?Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Center(child: Text('No Results Found!',style: TextStyle(fontSize: 20,color: Colors.grey),)),
+          ):Consumer<FetchData>(
             builder: (context, job, child) => Expanded(
                 child: ListView.builder(
                   itemCount: data.length,

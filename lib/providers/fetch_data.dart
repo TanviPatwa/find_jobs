@@ -52,7 +52,6 @@ class FetchData with ChangeNotifier {
         else
           _dummy=_items;
       }
-      print(_dummy[0].job_type);
       notifyListeners();
     }
     else
@@ -60,6 +59,7 @@ class FetchData with ChangeNotifier {
   }
 
   List<Job> get items {
+    _dummy=_items;
     return [..._items];
   }
 
@@ -89,7 +89,6 @@ class FetchData with ChangeNotifier {
       if (_items.length > 0) {
         _items.clear();
       }
-      // print('in fetch_data'+Jtitle);
       List<String> jobTitles=[];
       List<String> cat=[];
       final url = "https://remotive.io/api/remote-jobs";
@@ -122,7 +121,6 @@ class FetchData with ChangeNotifier {
         _uniqueTitles = jobTitles.toSet().toList();
         _category.addAll(cat.toSet().toList());
       }
-      print(_items.length);
       notifyListeners();
     } catch (error) {
       throw (error);

@@ -49,6 +49,14 @@ class JobDetails extends StatelessWidget {
                   ),
                 ),
                 Html(padding: EdgeInsets.all(12.0),data:detail.description),
+                Text('Visit Website :'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    onPressed: _launchURLApp,
+                    child: Text(detail.url),
+                  ),
+                ),
               ],),
             ),
           ),

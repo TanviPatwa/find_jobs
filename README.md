@@ -1,16 +1,22 @@
 # find_jobs
 
-A new Flutter project.
+A Flutter Project to Find Jobs. The job information is fetched from API and displayed on Dashboard.
+<img src="images/Dashboard.png">
 
-## Getting Started
+You can find detail information of job by clicking on Card.
+<img src="images/DetailDescription.png"> <img src="images/DetailDescription1.png">
 
-This project is a starting point for a Flutter application.
+Also on clicking the url, you will be redirected to webpage.
+<img src="images/WebData.png">
 
-A few resources to get you started if this is your first Flutter project:
+You can also search job according to title/role.
+<img src="images/searching.png"> <img src="images/SearchResults.png">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+You can filter jobs according to Job Type or/and category of job.
+<img src="images/FilterOptions.png">
+and results of filter applied are:
+<img src="images/FilterResult.png"> <img src="images/FilterResult1.png">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You can sort jobs depending on published date.
+<img src="images/dateSorting.png">
+

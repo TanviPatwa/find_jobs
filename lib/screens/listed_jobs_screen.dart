@@ -91,7 +91,7 @@ class DataSearch extends SearchDelegate<String> {
   String selectedTitle = '';
   final titles = titlesL;
 
-  final recent = [
+  List<String> recent = [
     'Fullstack Software Engineer',
     'Senior Data Engineer',
     'Drupal Developer'
@@ -141,11 +141,9 @@ class DataSearch extends SearchDelegate<String> {
       itemBuilder: (context, index) => ListTile(
         onTap: () {
           selectedTitle = suggestionList[index];
-          // print('this is selectedText ' + selectedTitle);
           showResults(context);
         },
         leading: Icon(Icons.computer_outlined),
-        // title: Text(suggestionList[index]),
         title: RichText(
           text: TextSpan(
             text: suggestionList[index].substring(0, query.length),
