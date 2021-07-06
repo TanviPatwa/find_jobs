@@ -44,7 +44,7 @@ class JobDetails extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                    onPressed: _launchURLApp,
+                    onPressed:()=> _launchURLApp(detail.url),
                     child: Text(detail.url),
                   ),
                 ),
@@ -53,7 +53,7 @@ class JobDetails extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                    onPressed: _launchURLApp,
+                    onPressed:()=> _launchURLApp(detail.url),
                     child: Text(detail.url),
                   ),
                 ),
@@ -65,8 +65,8 @@ class JobDetails extends StatelessWidget {
     );
   }
 }
-_launchURLApp() async {
-  const url = 'https://www.geeksforgeeks.org/';
+_launchURLApp(String link) async {
+  String url = link;
   if (await canLaunch(url)) {
     await launch(url, forceSafariVC: true, forceWebView: true);
   } else {
